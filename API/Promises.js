@@ -7,7 +7,7 @@ const generatePartnerCode = (userId) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
+    .then((response) => response.text()) // Parse response as text
     .then((data) => {
       resolve(data);
     })
@@ -21,7 +21,7 @@ const handlePartnerCode = (partnerCode, enteringUserId) => new Promise((resolve,
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((data) => {
       resolve(data);
     })
