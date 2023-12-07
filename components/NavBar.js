@@ -35,7 +35,7 @@ export default function NavBar() {
     if (currUser.partnerId != null) {
       getThisUserPartner();
     }
-  }, [currUser]);
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
@@ -69,8 +69,8 @@ export default function NavBar() {
                 <Link passHref href="/">
                   <Nav.Link>Home</Nav.Link>
                 </Link>
-                <Link passHref href="/delete-me">
-                  <Nav.Link>Delete Me</Nav.Link>
+                <Link passHref href="/profile">
+                  <Nav.Link>Profile</Nav.Link>
                 </Link>
                 <Button variant="danger" onClick={signOut}>
                   Sign Out

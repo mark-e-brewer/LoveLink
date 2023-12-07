@@ -2,7 +2,7 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import {
-  generatePartnerCode, handlePartnerCode, getUserByUid, getUserById,
+  generatePartnerCode, handlePartnerCode, getUserByUid, getUserById, getUserWithMyMoodDTO,
 } from '../API/Promises';
 
 const initialState = {
@@ -17,6 +17,7 @@ function Home() {
   const [partnerUser, setPartnerUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [isUserLinked, setIsUserLinked] = useState(false);
+  const [myMoodDto, setMyMoodDto] = useState({});
 
   const getTheCurrentUser = () => {
     getUserByUid(user.uid)?.then((data) => {
@@ -48,6 +49,19 @@ function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currUser]);
 
+  const getCurrentUserMood = () => {
+    getUserWithMyMoodDTO(currUser.id)?.then((data) => {
+      setMyMoodDto(data);
+    });
+  };
+
+  useEffect(() => {
+    getCurrentUserMood((data) => {
+      setMyMoodDto(data);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput({ ...formInput, [name]: value });
@@ -73,7 +87,7 @@ function Home() {
 
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
-    if (currUser.partnerId === partnerUser.id) {
+    if (currUser?.partnerId === partnerUser?.id) {
       console.log('Linked');
       setIsUserLinked(true);
     } else {
@@ -83,7 +97,7 @@ function Home() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(currUser);
+  console.log(myMoodDto?.myMood?.moodName);
   return (
     <>
       {!isUserLinked ? (
@@ -120,7 +134,8 @@ function Home() {
         </div>
       ) : (
         <>
-          <h3 className="d-flex justify-content-center">Welcome to LoveLink</h3>
+          <h1 className="d-flex justify-content-center">Welcome to LoveLink</h1>
+          <h3 className="myMoodDisplayHome d-flex justify-content-center">My Mood: {myMoodDto?.myMood?.moodName}</h3>
         </>
       )}
     </>

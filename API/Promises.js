@@ -67,10 +67,23 @@ const getUserById = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/userWithMyMood/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
   getAllusers,
   getUserByUid,
   getUserById,
+  getUserWithMyMoodDTO,
 };
