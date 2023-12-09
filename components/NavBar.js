@@ -50,6 +50,7 @@ export default function NavBar() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(partnerUser);
+
   return (
     <>
       {!isUserLinked ? (
