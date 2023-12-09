@@ -62,9 +62,14 @@ const getUserById = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    // .then((response) => response.text())
-    .then((data) => resolve((data)))
-    .catch(reject);
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => resolve(data))
+    .catch((error) => reject(error));
 });
 
 const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
@@ -79,6 +84,19 @@ const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/user/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
@@ -86,4 +104,5 @@ export {
   getUserByUid,
   getUserById,
   getUserWithMyMoodDTO,
+  updateUserById,
 };
