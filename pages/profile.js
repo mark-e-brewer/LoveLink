@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Button, Image } from 'react-bootstrap';
 import { getUserById, getUserByUid } from '../API/Promises';
 import { useAuth } from '../utils/context/authContext';
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { user } = useAuth();
   const [currUser, setCurrUser] = useState({});
   const [partnerUser, setPartnerUser] = useState({});
@@ -48,7 +50,7 @@ export default function ProfilePage() {
           borderRadius: '30px',
         }}
       >
-        <Button>Edit Profile</Button>
+        <Button onClick={(() => router.push(`/ProfileUpdate/${currUser.id}`))}>Edit Profile</Button>
         <Image src={currUser.profilePhoto} />
       </div>
       <div>
