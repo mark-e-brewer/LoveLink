@@ -14,7 +14,7 @@ function Home() {
   const [formInput, setFormInput] = useState(initialState);
   const [partnerCode, setPartnerCode] = useState('');
   const [currUser, setCurrUser] = useState({});
-  const [partnerUser, setPartnerUser] = useState({});
+  // const [partnerUser, setPartnerUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [isUserLinked, setIsUserLinked] = useState(false);
   const [myMoodDto, setMyMoodDto] = useState({});
@@ -22,12 +22,16 @@ function Home() {
   const getTheCurrentUser = () => {
     getUserByUid(user.uid)?.then((data) => {
       setCurrUser(data);
-    });
-  };
-
-  const getThisUserPartner = () => {
-    getUserById(currUser.partnerId)?.then((data) => {
-      setPartnerUser(data);
+      if (data.partnerId != null) {
+        getUserById(data.partnerId)?.then((partnerData) => {
+          if (data?.partnerId === partnerData?.id) {
+            setIsUserLinked(true);
+          } else {
+            setIsUserLinked(false);
+            getTheCurrentUser();
+          }
+        });
+      }
     });
   };
 
@@ -41,14 +45,6 @@ function Home() {
     });
   };
 
-  useEffect(() => {
-    console.log(currUser.partnerId);
-    if (currUser.partnerId != null) {
-      getThisUserPartner();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currUser]);
-
   const getCurrentUserMood = () => {
     getUserWithMyMoodDTO(currUser.id)?.then((data) => {
       setMyMoodDto(data);
@@ -59,7 +55,6 @@ function Home() {
     getCurrentUserMood((data) => {
       setMyMoodDto(data);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
@@ -85,19 +80,6 @@ function Home() {
       });
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line eqeqeq
-    if (currUser?.partnerId === partnerUser?.id) {
-      console.log('Linked');
-      setIsUserLinked(true);
-    } else {
-      console.log('Not Linked');
-      setIsUserLinked(false);
-      getTheCurrentUser();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log(myMoodDto?.myMood?.moodName);
   return (
     <>
       {!isUserLinked ? (

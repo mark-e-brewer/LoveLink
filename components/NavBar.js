@@ -13,43 +13,26 @@ import { getUserById, getUserByUid } from '../API/Promises';
 
 export default function NavBar() {
   const { user } = useAuth();
-  const [currUser, setCurrUser] = useState({});
-  const [partnerUser, setPartnerUser] = useState({});
   const [isUserLinked, setIsUserLinked] = useState(false);
 
   const getTheCurrentUser = () => {
-    getUserByUid(user.uid)
-      .then((data) => setCurrUser(data));
-  };
-
-  const getThisUserPartner = () => {
-    getUserById(currUser.partnerId)
-      .then((data) => setPartnerUser(data));
+    getUserByUid(user.uid)?.then((data) => {
+      if (data.partnerId != null) {
+        getUserById(data.partnerId)?.then((partnerData) => {
+          if (data?.partnerId === partnerData?.id) {
+            setIsUserLinked(true);
+          } else {
+            setIsUserLinked(false);
+            getTheCurrentUser();
+          }
+        });
+      }
+    });
   };
 
   useEffect(() => {
     getTheCurrentUser();
-  }, [user]);
-
-  useEffect(() => {
-    if (currUser.partnerId != null) {
-      getThisUserPartner();
-    }
   }, []);
-
-  useEffect(() => {
-    // eslint-disable-next-line eqeqeq
-    if (currUser.partnerId === partnerUser.id) {
-      console.log('Linked');
-      setIsUserLinked(true);
-    } else {
-      console.log('Not Linked');
-      setIsUserLinked(false);
-      getTheCurrentUser();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log(partnerUser);
 
   return (
     <>
@@ -72,6 +55,9 @@ export default function NavBar() {
                 </Link>
                 <Link passHref href="/profile">
                   <Nav.Link>Profile</Nav.Link>
+                </Link>
+                <Link passHref href="/Journal">
+                  <Nav.Link>Journal</Nav.Link>
                 </Link>
                 <Button variant="danger" onClick={signOut}>
                   Sign Out
