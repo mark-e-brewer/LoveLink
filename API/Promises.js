@@ -158,7 +158,7 @@ const createJournal = (payload) => new Promise((resolve, reject) => {
 // }
 
 const updateJournalById = (payload, journalId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/user/${journalId}`, {
+  fetch(`${dbUrl}/journal/${journalId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -216,6 +216,19 @@ const updateMoodTagsInJournalById = (journalId, moodTagsArray) => new Promise((r
     .catch(reject);
 });
 
+const getAllMoodTags = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/allMoodTags`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
@@ -232,4 +245,5 @@ export {
   deleteJournalById,
   addMoodTagsToJournalById,
   updateMoodTagsInJournalById,
+  getAllMoodTags,
 };

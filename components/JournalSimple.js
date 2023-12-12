@@ -9,17 +9,16 @@ export default function JournalSimple({ journalObj }) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', options);
   };
+
   return (
-    <>
-      <Card className="d-flex" style={{ width: '20rem', height: '12rem' }}>
-        <Card.Title style={{ color: 'black' }}>{journalObj.name}</Card.Title>
-        <Card.Body>{journalObj.entry}</Card.Body>
-        <Link href={`/Journal/${journalObj.id}`} passHref>
-          View Details
-        </Link>
-        <Card.Footer>{formatEntryDate(journalObj.dateEntered)}</Card.Footer>
-      </Card>
-    </>
+    <Card className="mb-3">
+      <Card.Title style={{ color: 'black', marginBottom: '0px' }}>{journalObj.name}</Card.Title>
+      <Card.Body style={{ marginTop: '0px' }}>{journalObj.entry}</Card.Body>
+      <Link href={`/Journal/${journalObj.id}`} passHref>
+        View Details
+      </Link>
+      <Card.Footer>{formatEntryDate(journalObj.dateEntered)}</Card.Footer>
+    </Card>
   );
 }
 
