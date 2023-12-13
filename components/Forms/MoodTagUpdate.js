@@ -11,7 +11,6 @@ export default function MoodTagUpdate({ journalId }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch the journal with mood tags when the component mounts
     getJournalByIdWithTags(journalId)
       .then((response) => {
         console.log('Full response:', response);
@@ -26,14 +25,12 @@ export default function MoodTagUpdate({ journalId }) {
       })
       .catch((error) => console.error('Error fetching journal with mood tags:', error));
 
-    // Fetch all mood tags
     getAllMoodTags()
       .then((tags) => setAllMoodTags(tags))
       .catch((error) => console.error('Error fetching all mood tags:', error));
   }, [journalId]);
 
   const handleCheckboxChange = (tagId) => {
-    // Toggle the selected state of the mood tag
     setSelectedMoodTags((prevSelected) => {
       if (prevSelected.includes(tagId)) {
         return prevSelected.filter((id) => id !== tagId);
@@ -44,12 +41,10 @@ export default function MoodTagUpdate({ journalId }) {
   };
 
   const handleSubmit = () => {
-    // Call the API endpoint to update mood tags
     updateMoodTagsInJournalById(journalId, selectedMoodTags)
       .then((response) => {
         console.log(response);
         router.push('/Journal');
-        // Handle success, e.g., show a success message or navigate to another page
       })
       .catch((error) => console.error('Error submitting mood tags:', error));
   };
@@ -67,7 +62,7 @@ export default function MoodTagUpdate({ journalId }) {
               checked={selectedMoodTags.includes(tag.id)}
               onChange={() => handleCheckboxChange(tag.id)}
             />
-            <label htmlFor={`moodTag-${tag.id}`}>{`Mood : ${tag.name}`}</label>
+            <label htmlFor={`moodTag-${tag?.id}`}>{`Mood : ${tag?.name}`}</label>
           </div>
         ))}
       </div>

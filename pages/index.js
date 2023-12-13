@@ -2,7 +2,7 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import {
-  generatePartnerCode, handlePartnerCode, getUserByUid, getUserById, getUserWithMyMoodDTO,
+  generatePartnerCode, handlePartnerCode, getUserWithMyMoodDTO,
 } from '../API/Promises';
 
 const initialState = {
@@ -10,45 +10,25 @@ const initialState = {
 };
 
 function Home() {
-  const { user } = useAuth();
+  const { user, setIsUserLinked, isUserLinked } = useAuth();
   const [formInput, setFormInput] = useState(initialState);
   const [partnerCode, setPartnerCode] = useState('');
-  const [currUser, setCurrUser] = useState({});
   // const [partnerUser, setPartnerUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-  const [isUserLinked, setIsUserLinked] = useState(false);
   const [myMoodDto, setMyMoodDto] = useState({});
 
-  const getTheCurrentUser = () => {
-    getUserByUid(user.uid)?.then((data) => {
-      setCurrUser(data);
-      if (data.partnerId != null) {
-        getUserById(data.partnerId)?.then((partnerData) => {
-          if (data?.partnerId === partnerData?.id) {
-            setIsUserLinked(true);
-          } else {
-            setIsUserLinked(false);
-            getTheCurrentUser();
-          }
-        });
-      }
-    });
-  };
-
-  useEffect(() => {
-    getTheCurrentUser();
-  }, [user]);
-
   const generateNewPartnerCode = () => {
-    generatePartnerCode(currUser.id)?.then((data) => {
+    generatePartnerCode(user.id)?.then((data) => {
       setPartnerCode(data);
     });
   };
 
   const getCurrentUserMood = () => {
-    getUserWithMyMoodDTO(currUser.id)?.then((data) => {
-      setMyMoodDto(data);
-    });
+    if (user.id != null) {
+      getUserWithMyMoodDTO(user.id)?.then((data) => {
+        setMyMoodDto(data);
+      });
+    }
   };
 
   useEffect(() => {
@@ -65,7 +45,7 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const parCode = formInput.partnerCode;
-    handlePartnerCode(parCode, currUser.id)
+    handlePartnerCode(parCode, user.id)
       .then((response) => {
         if (response === 'Invalid partner code. Please try again.') {
           // Show error message
@@ -73,9 +53,9 @@ function Home() {
         } else {
           // Reset error message
           setErrorMessage('');
+          setIsUserLinked(true);
           // Clear the form input box
           setFormInput(initialState);
-          getTheCurrentUser();
         }
       });
   };
