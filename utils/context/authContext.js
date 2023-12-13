@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import { checkUser } from '../auth';
 import { firebase } from '../client';
+import { getUserById } from '../../API/Promises';
 
 const AuthContext = createContext();
 
@@ -17,6 +18,7 @@ AuthContext.displayName = 'AuthContext'; // Context object accepts a displayName
 const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
   const [oAuthUser, setOAuthUser] = useState(null);
+  const [isUserLinked, setIsUserLinked] = useState(false);
 
   // there are 3 states for the user:
   // null = application initial state, not yet loaded
@@ -31,10 +33,10 @@ const AuthProvider = (props) => {
   );
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((fbUser) => {
+    firebase.auth().onAuthStateChanged(async (fbUser) => {
       if (fbUser) {
         setOAuthUser(fbUser);
-        checkUser(fbUser.uid).then((gamerInfo) => {
+        await checkUser(fbUser.uid).then((gamerInfo) => {
           let userObj = {};
           if ('null' in gamerInfo) {
             userObj = gamerInfo;
@@ -42,24 +44,37 @@ const AuthProvider = (props) => {
             userObj = { fbUser, uid: fbUser.uid, ...gamerInfo };
           }
           setUser(userObj);
+        }).then(async () => {
+          if (user?.partnerId != null) {
+            await getUserById(user.partnerId)?.then((partnerData) => {
+              if (user?.partnerId === partnerData?.id) {
+                setIsUserLinked(true);
+              } else {
+                setIsUserLinked(false);
+              }
+            });
+          }
         });
       } else {
         setOAuthUser(false);
         setUser(false);
+        setIsUserLinked(false);
       }
     }); // creates a single global listener for auth state changed
-  }, []);
+  }, [isUserLinked, oAuthUser]);
 
   const value = useMemo(
     // https://reactjs.org/docs/hooks-reference.html#usememo
     () => ({
       user,
       updateUser,
+      setIsUserLinked,
+      isUserLinked,
       userLoading: user === null || oAuthUser === null,
       // as long as user === null, will be true
       // As soon as the user value !== null, value will be false
     }),
-    [user, oAuthUser, updateUser],
+    [user, oAuthUser, updateUser, isUserLinked, setUser],
   );
 
   return <AuthContext.Provider value={value} {...props} />;
