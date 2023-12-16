@@ -30,22 +30,36 @@ export default function UserProfileForm({ userObj, userID }) {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    // If the input is a file input, use the File object
-    const newValue = name === 'profilePhoto' ? files[0] : value;
+    // eslint-disable-next-line no-nested-ternary
+    const newValue = name === 'profilePhoto' ? (files ? files[0] : null) : value;
 
-    setFormInput({ ...formInput, [name]: newValue });
+    setFormInput((prevFormInput) => ({
+      ...prevFormInput,
+      [name]: newValue,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Use FormData to handle file uploads
     const formData = new FormData();
+
     Object.entries(formInput).forEach(([key, value]) => {
-      formData.append(key, value);
+      // Convert string values to appropriate types
+      switch (key) {
+        case 'age':
+        case 'partnerId':
+          formData.append(key, parseInt(value, 10));
+          break;
+        case 'anniversaryDate':
+          formData.append(key, new Date(value));
+          break;
+        default:
+          formData.append(key, value);
+      }
     });
 
     updateUserById(formData, userID).then(() => {
+      console.log(formData);
       router.push('/profile');
       setFormInput(initialState);
     });
@@ -80,7 +94,7 @@ export default function UserProfileForm({ userObj, userID }) {
               className="form-input"
               type="text"
               placeholder="Enter Your Age"
-              name="type"
+              name="age"
               value={formInput.age}
               onChange={handleChange}
             />
@@ -90,7 +104,7 @@ export default function UserProfileForm({ userObj, userID }) {
               className="form-input"
               type="text"
               placeholder="Enter a Bio"
-              name="customerPhone"
+              name="bio"
               value={formInput.bio}
               onChange={handleChange}
             />
@@ -108,7 +122,7 @@ export default function UserProfileForm({ userObj, userID }) {
           <FloatingLabel controlId="floatingInput1" label="Profile Photo" className="mb-3">
             <Form.Control
               className="form-input"
-              type="file" // Change the input type to "file"
+              type="file"
               name="profilePhoto"
               onChange={handleChange}
             />
