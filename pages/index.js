@@ -48,13 +48,10 @@ function Home() {
     handlePartnerCode(parCode, user.id)
       .then((response) => {
         if (response === 'Invalid partner code. Please try again.') {
-          // Show error message
           setErrorMessage(response);
         } else {
-          // Reset error message
           setErrorMessage('');
           setIsUserLinked(true);
-          // Clear the form input box
           setFormInput(initialState);
         }
       });
@@ -62,7 +59,7 @@ function Home() {
 
   return (
     <>
-      {!isUserLinked ? (
+      {isUserLinked ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{

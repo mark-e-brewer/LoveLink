@@ -92,9 +92,19 @@ const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to update user. Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((updatedUserData) => {
+      resolve(updatedUserData);
+    })
+    .catch((error) => {
+      console.error('Error updating user:', error);
+      reject(error);
+    });
 });
 
 const getUsersJournalsById = (userId) => new Promise((resolve, reject) => {

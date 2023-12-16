@@ -61,7 +61,7 @@ const AuthProvider = (props) => {
         setIsUserLinked(false);
       }
     }); // creates a single global listener for auth state changed
-  }, [isUserLinked, oAuthUser]);
+  }, []);
 
   const value = useMemo(
     // https://reactjs.org/docs/hooks-reference.html#usememo
