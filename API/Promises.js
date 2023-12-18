@@ -85,12 +85,18 @@ const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
 });
 
 const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
+  const isFileUpload = payload instanceof FormData;
+
+  const headers = isFileUpload
+    ? {}
+    : {
+      'Content-Type': 'application/json',
+    };
+
   fetch(`${dbUrl}/user/${userId}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
+    headers,
+    body: isFileUpload ? payload : JSON.stringify(payload),
   })
     .then((response) => {
       if (!response.ok) {
@@ -99,6 +105,7 @@ const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
       return response.json();
     })
     .then((updatedUserData) => {
+      console.log('Updated user data:', updatedUserData);
       resolve(updatedUserData);
     })
     .catch((error) => {
