@@ -44,35 +44,31 @@ export default function UserProfileForm({ userObj, userID }) {
     const formData = new FormData();
 
     Object.entries(formInput).forEach(([key, value]) => {
-      // Convert string values to appropriate types
       switch (key) {
         case 'age':
         case 'partnerId':
           formData.append(key, parseInt(value, 10));
           break;
         case 'anniversaryDate':
-          formData.append(key, new Date(value));
+          // eslint-disable-next-line no-case-declarations
+          const formattedDate = new Date(value).toISOString().split('T')[0];
+          formData.append(key, formattedDate);
+          break;
+        case 'profilePhoto':
+          if (value) {
+            formData.append(key, value, value.name);
+          }
           break;
         default:
           formData.append(key, value);
       }
     });
-
+    console.log(formData);
     updateUserById(formData, userID).then(() => {
       console.log(formData);
       router.push('/profile');
       setFormInput(initialState);
     });
-  };
-
-  const generateYearOptions = () => {
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 30 }, (_, index) => currentYear - index);
-    return years.map((year) => (
-      <option key={year} value={year}>
-        {year}
-      </option>
-    ));
   };
 
   return (
@@ -123,20 +119,20 @@ export default function UserProfileForm({ userObj, userID }) {
             <Form.Control
               className="form-input"
               type="file"
+              placeholder="Allows: .jpg .jpeg .png .gif"
               name="profilePhoto"
               onChange={handleChange}
             />
           </FloatingLabel>
           <FloatingLabel controlId="floatingInput1" label="Anniversary Date" className="mb-3">
-            <Form.Select
+            <Form.Control
               className="form-input"
+              type="date"
               name="anniversaryDate"
               value={formInput.anniversaryDate}
               onChange={handleChange}
-            >
-              <option value="">Select Anniversary Year</option>
-              {generateYearOptions()}
-            </Form.Select>
+              required
+            />
           </FloatingLabel>
           <Button type="submit" className="form-submit">Submit</Button>
         </Form>

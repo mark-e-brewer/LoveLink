@@ -10,26 +10,19 @@ export default function ProfilePage() {
   const [currUser, setCurrUser] = useState({});
   const [partnerUser, setPartnerUser] = useState({});
 
-  const getTheCurrentUser = () => {
+  const getTheCurrentUserAndPartner = () => {
     getUserByUid(user.uid)?.then((data) => {
       setCurrUser(data);
-    });
-  };
-  const getThisUserPartner = () => {
-    getUserById(currUser.partnerId)?.then((data) => {
-      setPartnerUser(data);
+      if (data?.partnerId != null) {
+        getUserById(data?.partnerId)?.then((partnerData) => {
+          setPartnerUser(partnerData);
+        });
+      }
     });
   };
 
   useEffect(() => {
-    getTheCurrentUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (currUser.partnerId !== undefined) {
-      getThisUserPartner();
-    }
+    getTheCurrentUserAndPartner();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
