@@ -31,7 +31,7 @@ const registerUser = (userInfo) => new Promise((resolve, reject) => {
     },
   })
     .then((resp) => resolve(resp.json()))
-    .then((data) => console.log(data))
+    .then((data) => console.warn(data))
     .catch(reject);
 });
 

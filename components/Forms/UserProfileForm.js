@@ -10,7 +10,6 @@ const initialState = {
   age: 0,
   bio: '',
   gender: '',
-  profilePhoto: '',
   partnerId: 0,
   partnerUid: '',
   anniversaryDate: '',
@@ -28,14 +27,11 @@ export default function UserProfileForm({ userObj, userID }) {
   }, [userObj]);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    // eslint-disable-next-line no-nested-ternary
-    const newValue = name === 'profilePhoto' ? (files ? files[0] : null) : value;
+    const { name, value } = e.target;
 
     setFormInput((prevFormInput) => ({
       ...prevFormInput,
-      [name]: newValue,
+      [name]: value,
     }));
   };
 
@@ -54,18 +50,12 @@ export default function UserProfileForm({ userObj, userID }) {
           const formattedDate = new Date(value).toISOString().split('T')[0];
           formData.append(key, formattedDate);
           break;
-        case 'profilePhoto':
-          if (value) {
-            formData.append(key, value, value.name);
-          }
-          break;
         default:
           formData.append(key, value);
       }
     });
-    console.log(formData);
     updateUserById(formData, userID).then(() => {
-      console.log(formData);
+      console.warn(formData);
       router.push('/profile');
       setFormInput(initialState);
     });
@@ -115,15 +105,6 @@ export default function UserProfileForm({ userObj, userID }) {
               onChange={handleChange}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput1" label="Profile Photo" className="mb-3">
-            <Form.Control
-              className="form-input"
-              type="file"
-              placeholder="Allows: .jpg .jpeg .png .gif"
-              name="profilePhoto"
-              onChange={handleChange}
-            />
-          </FloatingLabel>
           <FloatingLabel controlId="floatingInput1" label="Anniversary Date" className="mb-3">
             <Form.Control
               className="form-input"
@@ -149,7 +130,6 @@ UserProfileForm.propTypes = {
     age: PropTypes.number,
     bio: PropTypes.string,
     gender: PropTypes.string,
-    profilePhoto: PropTypes.string,
     partnerId: PropTypes.number,
     partnerUid: PropTypes.string,
     anniversaryDate: PropTypes.string,

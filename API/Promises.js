@@ -84,34 +84,62 @@ const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
-  const isFileUpload = payload instanceof FormData;
+// const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
+//   const isFileUpload = payload instanceof FormData;
 
-  const headers = isFileUpload
-    ? {}
-    : {
-      'Content-Type': 'application/json',
-    };
+//   const headers = isFileUpload
+//     ? { 'Content-Type': 'multipart/form-data' }
+//     : {
+//       'Content-Type': 'application/json',
+//     };
+
+//   fetch(`${dbUrl}/user/${userId}`, {
+//     method: 'PUT',
+//     headers,
+//     body: isFileUpload ? payload : JSON.stringify(payload),
+//   })
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(`Failed to update user. Status: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then((updatedUserData) => {
+//       console.log('Updated user data:', updatedUserData);
+//       resolve(updatedUserData);
+//     })
+//     .catch((error) => {
+//       console.error('Error updating user:', error);
+//       reject(error);
+//     });
+// });
+
+const updateProfilePhotoById = (profilePhoto, userId) => new Promise((resolve, reject) => {
+  const formData = new FormData();
+  formData.append('profilePhoto', profilePhoto);
+
+  fetch(`${dbUrl}/user/${userId}/profile-photo`, {
+    method: 'PUT',
+    body: formData,
+  })
+    // .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
+const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
+  const headers = {
+    'Content-Type': 'application/json',
+  };
 
   fetch(`${dbUrl}/user/${userId}`, {
     method: 'PUT',
     headers,
-    body: isFileUpload ? payload : JSON.stringify(payload),
+    body: JSON.stringify(payload),
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to update user. Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((updatedUserData) => {
-      console.log('Updated user data:', updatedUserData);
-      resolve(updatedUserData);
-    })
-    .catch((error) => {
-      console.error('Error updating user:', error);
-      reject(error);
-    });
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
 });
 
 const getUsersJournalsById = (userId) => new Promise((resolve, reject) => {
@@ -246,6 +274,30 @@ const getAllMoodTags = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getUsersNotifications = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/alluserjournals/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values((data))))
+    .catch(reject);
+});
+
+const deleteNotificationById = (notificationId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/deletejournal/${notificationId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
@@ -263,4 +315,7 @@ export {
   addMoodTagsToJournalById,
   updateMoodTagsInJournalById,
   getAllMoodTags,
+  getUsersNotifications,
+  deleteNotificationById,
+  updateProfilePhotoById,
 };

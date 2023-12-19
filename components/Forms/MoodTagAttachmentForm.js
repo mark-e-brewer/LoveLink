@@ -36,7 +36,7 @@ export default function MoodTagAttach({ journalID }) {
 
     apiFunction(journalID || 0, selectedMoodTags)
       .then((response) => {
-        console.log(response);
+        console.warn(response);
         router.push('/Journal');
         // Handle success, e.g., show a success message or navigate to another page
       })
