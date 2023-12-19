@@ -13,7 +13,7 @@ export default function MoodTagUpdate({ journalId }) {
   useEffect(() => {
     getJournalByIdWithTags(journalId)
       .then((response) => {
-        console.log('Full response:', response);
+        console.warn('Full response:', response);
 
         if (Array.isArray(response) && response.length >= 9 && Array.isArray(response[8])) {
           const moodTags = response[8].map((tag) => tag.id);
@@ -43,7 +43,7 @@ export default function MoodTagUpdate({ journalId }) {
   const handleSubmit = () => {
     updateMoodTagsInJournalById(journalId, selectedMoodTags)
       .then((response) => {
-        console.log(response);
+        console.warn(response);
         router.push('/Journal');
       })
       .catch((error) => console.error('Error submitting mood tags:', error));

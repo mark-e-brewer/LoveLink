@@ -46,7 +46,7 @@ export default function JournalForm({ journalObj, userID, userObj }) {
       };
       createJournal(payload)?.then((response) => {
         router.push(`/Journal/Form/${response.id}`);
-        console.log(payload);
+        console.warn(payload);
         setFormInput(initialState);
       });
     }

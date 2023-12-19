@@ -28,6 +28,9 @@ export default function NavBar() {
             <Link passHref href="/Journal">
               <Nav.Link>Journal</Nav.Link>
             </Link>
+            <Link passHref href="/Notifications">
+              <Nav.Link>Notifications</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>

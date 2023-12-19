@@ -31,6 +31,9 @@ export default function ProfilePage() {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', options);
   };
+  console.log(currUser?.profilePhoto);
+
+  // "C:\Users\markb\workspace\foundations\exercises\LoveLink\LoveLinkProfilePhotos"
 
   return (
     <>
@@ -42,7 +45,10 @@ export default function ProfilePage() {
         }}
       >
         <Button onClick={(() => router.push(`/ProfileUpdate/${currUser.id}`))}>Edit Profile</Button>
-        <Image src={currUser.profilePhoto} />
+        <Image src={`..\\public\\LoveLinkProfilePhotos\\${currUser.profilePhoto}`} />
+        <Button onClick={(() => router.push(`/ProfileUpdate/Photo/${currUser?.id}`))}>
+          Update Photo
+        </Button>
       </div>
       <div>
         <h3>Name: {user.name}</h3>

@@ -59,7 +59,7 @@ function Home() {
 
   return (
     <>
-      {!isUserLinked ? (
+      {isUserLinked ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{
