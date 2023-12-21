@@ -45,7 +45,7 @@ export default function ProfilePage() {
         }}
       >
         <Button onClick={(() => router.push(`/ProfileUpdate/${currUser.id}`))}>Edit Profile</Button>
-        <Image src={`..\\public\\LoveLinkProfilePhotos\\${currUser.profilePhoto}`} />
+        <Image className="profile-photo-img" src={`/LoveLinkProfilePhotos/${currUser.profilePhoto}`} />
         <Button onClick={(() => router.push(`/ProfileUpdate/Photo/${currUser?.id}`))}>
           Update Photo
         </Button>

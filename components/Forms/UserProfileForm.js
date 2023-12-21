@@ -37,28 +37,14 @@ export default function UserProfileForm({ userObj, userID }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-
-    Object.entries(formInput).forEach(([key, value]) => {
-      switch (key) {
-        case 'age':
-        case 'partnerId':
-          formData.append(key, parseInt(value, 10));
-          break;
-        case 'anniversaryDate':
-          // eslint-disable-next-line no-case-declarations
-          const formattedDate = new Date(value).toISOString().split('T')[0];
-          formData.append(key, formattedDate);
-          break;
-        default:
-          formData.append(key, value);
-      }
-    });
-    updateUserById(formData, userID).then(() => {
-      console.warn(formData);
-      router.push('/profile');
-      setFormInput(initialState);
-    });
+    updateUserById(formInput, userID)
+      .then(() => {
+        router.push('/profile');
+        setFormInput(initialState);
+      })
+      .catch((error) => {
+        console.error('Error updating user:', error);
+      });
   };
 
   return (

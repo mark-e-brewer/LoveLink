@@ -84,36 +84,6 @@ const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
-//   const isFileUpload = payload instanceof FormData;
-
-//   const headers = isFileUpload
-//     ? { 'Content-Type': 'multipart/form-data' }
-//     : {
-//       'Content-Type': 'application/json',
-//     };
-
-//   fetch(`${dbUrl}/user/${userId}`, {
-//     method: 'PUT',
-//     headers,
-//     body: isFileUpload ? payload : JSON.stringify(payload),
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`Failed to update user. Status: ${response.status}`);
-//       }
-//       return response.json();
-//     })
-//     .then((updatedUserData) => {
-//       console.log('Updated user data:', updatedUserData);
-//       resolve(updatedUserData);
-//     })
-//     .catch((error) => {
-//       console.error('Error updating user:', error);
-//       reject(error);
-//     });
-// });
-
 const updateProfilePhotoById = (profilePhoto, userId) => new Promise((resolve, reject) => {
   const formData = new FormData();
   formData.append('profilePhoto', profilePhoto);
@@ -138,7 +108,7 @@ const updateUserById = (payload, userId) => new Promise((resolve, reject) => {
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => resolve((data)))
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
