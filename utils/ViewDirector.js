@@ -21,7 +21,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        {!isUserLinked ? <NavBar /> : <button type="button" onClick={signOut}>Signout</button>}
+        {isUserLinked ? <NavBar /> : <button type="button" onClick={signOut}>Signout</button>}
         <div className="container"><Component {...pageProps} /></div>
       </>
     );
