@@ -1,5 +1,6 @@
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import {
   generatePartnerCode, handlePartnerCode, getUserWithMyMoodDTO,
@@ -16,6 +17,7 @@ function Home() {
   // const [partnerUser, setPartnerUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [myMoodDto, setMyMoodDto] = useState({});
+  const router = useRouter();
 
   const generateNewPartnerCode = () => {
     generatePartnerCode(user.id)?.then((data) => {
@@ -59,7 +61,7 @@ function Home() {
 
   return (
     <>
-      {isUserLinked ? (
+      {!isUserLinked ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{
@@ -93,8 +95,16 @@ function Home() {
         </div>
       ) : (
         <>
-          <h1 className="d-flex justify-content-center">Welcome to LoveLink</h1>
-          <h3 className="myMoodDisplayHome d-flex justify-content-center">My Mood: {myMoodDto?.myMood?.moodName}</h3>
+          <div className="d-flex justify-content-center flex-column">
+            <h1 className="d-flex justify-content-center">Welcome to LoveLink</h1>
+            <Button
+              className="nav-my-mood-form-btn"
+              onClick={() => router.push(`/MyMood/${user?.id ? parseInt(user.id, 10) : ''}`)}
+            >
+              Set a Mood
+            </Button>
+            <h3 className="myMoodDisplayHome d-flex justify-content-center">My Mood: {myMoodDto?.myMood?.moodName}</h3>
+          </div>
         </>
       )}
     </>

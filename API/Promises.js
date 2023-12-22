@@ -268,6 +268,43 @@ const deleteNotificationById = (notificationId) => new Promise((resolve, reject)
     .catch(reject);
 });
 
+const postMyMoodToUser = (userId, myMoodId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/user/${userId}/mymood/${myMoodId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        reject(new Error(`Server returned status: ${response.status}`));
+        return;
+      }
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        // eslint-disable-next-line consistent-return
+        return response.json();
+      }
+      // eslint-disable-next-line consistent-return
+      return {};
+    })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const getAllMyMoods = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/myMoods?userId=${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
@@ -288,4 +325,6 @@ export {
   getUsersNotifications,
   deleteNotificationById,
   updateProfilePhotoById,
+  postMyMoodToUser,
+  getAllMyMoods,
 };

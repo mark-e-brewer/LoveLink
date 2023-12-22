@@ -21,7 +21,7 @@ body {
   background-color: rgb(255, 213, 226);
 }
 
-/* .navBarComp {
-  width: 2000px !important;
-  right: 40%;
-} */
+
+.nav-my-mood-form-btn {
+  align-self: center;
+}

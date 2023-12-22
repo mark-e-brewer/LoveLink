@@ -11,14 +11,12 @@ export default function MoodTagAttach({ journalID }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch all mood tags when the component mountss
     getAllMoodTags()
       .then((tags) => setAllMoodTags(tags))
       .catch((error) => console.error('Error fetching mood tags:', error));
   }, []);
 
   const handleCheckboxChange = (tagId) => {
-    // Toggle the selected state of the mood tag
     setSelectedMoodTags((prevSelected) => {
       if (prevSelected.includes(tagId)) {
         return prevSelected.filter((id) => id !== tagId);
@@ -29,16 +27,13 @@ export default function MoodTagAttach({ journalID }) {
   };
 
   const handleSubmit = () => {
-    // Call the appropriate API endpoint based on whether it's an update or create
     const apiFunction = journalID
       ? updateMoodTagsInJournalById
       : addMoodTagsToJournalById;
-
     apiFunction(journalID || 0, selectedMoodTags)
       .then((response) => {
         console.warn(response);
         router.push('/Journal');
-        // Handle success, e.g., show a success message or navigate to another page
       })
       .catch((error) => console.error('Error submitting mood tags:', error));
   };
