@@ -31,9 +31,6 @@ export default function ProfilePage() {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', options);
   };
-  console.log(currUser?.profilePhoto);
-
-  // "C:\Users\markb\workspace\foundations\exercises\LoveLink\LoveLinkProfilePhotos"
 
   return (
     <>

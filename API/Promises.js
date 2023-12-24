@@ -245,7 +245,7 @@ const getAllMoodTags = () => new Promise((resolve, reject) => {
 });
 
 const getUsersNotifications = (userId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/alluserjournals/${userId}`, {
+  fetch(`${dbUrl}/userNotifs/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -257,7 +257,7 @@ const getUsersNotifications = (userId) => new Promise((resolve, reject) => {
 });
 
 const deleteNotificationById = (notificationId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/deletejournal/${notificationId}`, {
+  fetch(`${dbUrl}/deleteNotif/${notificationId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
