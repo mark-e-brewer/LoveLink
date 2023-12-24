@@ -37,6 +37,7 @@ function Home() {
     getCurrentUserMood((data) => {
       setMyMoodDto(data);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
