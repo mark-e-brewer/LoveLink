@@ -37,6 +37,7 @@ function Home() {
     getCurrentUserMood((data) => {
       setMyMoodDto(data);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
@@ -61,7 +62,7 @@ function Home() {
 
   return (
     <>
-      {!isUserLinked ? (
+      {isUserLinked ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{
