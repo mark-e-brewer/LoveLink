@@ -305,6 +305,24 @@ const getAllMyMoods = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getMostRecentUserJournal = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/recentJournal/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => resolve(data))
+    .catch((error) => reject(error));
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
@@ -327,4 +345,5 @@ export {
   updateProfilePhotoById,
   postMyMoodToUser,
   getAllMyMoods,
+  getMostRecentUserJournal,
 };
