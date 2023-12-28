@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import {
-  generatePartnerCode, handlePartnerCode, getUserWithMyMoodDTO,
+  generatePartnerCode, handlePartnerCode, getUserWithMyMoodDTO, getMostRecentUserJournal,
 } from '../API/Promises';
+import JournalSimple from '../components/JournalSimple';
 
 const initialState = {
   partnerCode: '',
@@ -15,6 +16,8 @@ function Home() {
   const [formInput, setFormInput] = useState(initialState);
   const [partnerCode, setPartnerCode] = useState('');
   // const [partnerUser, setPartnerUser] = useState({});
+  const [partnersLastJournal, setPartnerLastJournal] = useState({});
+  const [partnerMyMoodDto, setPartnerMyMoodDto] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [myMoodDto, setMyMoodDto] = useState({});
   const router = useRouter();
@@ -25,18 +28,27 @@ function Home() {
     });
   };
 
-  const getCurrentUserMood = () => {
+  const getCurrentUserMoodAndPartner = () => {
     if (user.id != null) {
       getUserWithMyMoodDTO(user.id)?.then((data) => {
         setMyMoodDto(data);
+        getUserWithMyMoodDTO(user.partnerId)?.then((partnerData) => {
+          setPartnerMyMoodDto(partnerData);
+        });
       });
     }
   };
 
-  useEffect(() => {
-    getCurrentUserMood((data) => {
-      setMyMoodDto(data);
+  const getTheMostRecentPartnerJournal = () => {
+    getMostRecentUserJournal(user?.partnerId)?.then((data) => {
+      setPartnerLastJournal(data);
+      console.log(partnersLastJournal);
     });
+  };
+
+  useEffect(() => {
+    getCurrentUserMoodAndPartner();
+    getTheMostRecentPartnerJournal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,7 +74,7 @@ function Home() {
 
   return (
     <>
-      {isUserLinked ? (
+      {!isUserLinked ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{
@@ -105,7 +117,10 @@ function Home() {
               Set a Mood
             </Button>
             <h3 className="myMoodDisplayHome d-flex justify-content-center">My Mood: {myMoodDto?.myMood?.moodName}</h3>
+            <h3 className="text-center">Partners Mood: {partnerMyMoodDto?.myMood?.moodName}</h3>
           </div>
+          <h2 className="text-center">Partners Last Journal Entry</h2>
+          <JournalSimple journalObj={partnersLastJournal} />
         </>
       )}
     </>
