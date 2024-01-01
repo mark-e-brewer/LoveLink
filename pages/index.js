@@ -5,7 +5,7 @@ import { useAuth } from '../utils/context/authContext';
 import {
   generatePartnerCode, handlePartnerCode, getUserWithMyMoodDTO, getMostRecentUserJournal,
 } from '../API/Promises';
-import JournalSimple from '../components/JournalSimple';
+import JournalSimplePartnerHome from '../components/JournalSimplePartnerHome';
 
 const initialState = {
   partnerCode: '',
@@ -40,10 +40,14 @@ function Home() {
   };
 
   const getTheMostRecentPartnerJournal = () => {
-    getMostRecentUserJournal(user?.partnerId)?.then((data) => {
-      setPartnerLastJournal(data);
-      console.log(partnersLastJournal);
-    });
+    getMostRecentUserJournal(user?.partnerId)
+      .then((data) => {
+        setPartnerLastJournal(data);
+        console.log(data); // Use 'data' here instead of 'partnersLastJournal'
+      })
+      .catch((error) => {
+        console.error('Error fetching the most recent journal:', error);
+      });
   };
 
   useEffect(() => {
@@ -51,6 +55,10 @@ function Home() {
     getTheMostRecentPartnerJournal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    console.log(partnersLastJournal);
+    // Perform other operations with partnersLastJournal if needed
+  }, [partnersLastJournal]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,7 +82,7 @@ function Home() {
 
   return (
     <>
-      {!isUserLinked ? (
+      {isUserLinked ? (
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{
@@ -118,9 +126,18 @@ function Home() {
             </Button>
             <h3 className="myMoodDisplayHome d-flex justify-content-center">My Mood: {myMoodDto?.myMood?.moodName}</h3>
             <h3 className="text-center">Partners Mood: {partnerMyMoodDto?.myMood?.moodName}</h3>
+            <hr />
           </div>
           <h2 className="text-center">Partners Last Journal Entry</h2>
-          <JournalSimple journalObj={partnersLastJournal} />
+          <JournalSimplePartnerHome journalObj={partnersLastJournal} />
+          <div className="d-flex justify-content-between">
+            <Button className="view-partners-journals-btn " onClick={(() => router.push(`/PartnerJournals/${user?.partnerId}`))}>
+              View all their journals
+            </Button>
+            <Button onClick={(() => router.push(`/PartnerProfile/${user?.partnerId}`))}>
+              View Partners Profile
+            </Button>
+          </div>
         </>
       )}
     </>

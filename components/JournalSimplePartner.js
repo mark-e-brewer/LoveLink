@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import Link from 'next/link';
 
-export default function JournalSimple({ journalObj }) {
+export default function JournalSimplePartner({ journalObj }) {
   const formatEntryDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date(dateString);
@@ -14,7 +14,7 @@ export default function JournalSimple({ journalObj }) {
     <Card className="mb-3">
       <Card.Title style={{ color: 'black', marginBottom: '0px' }}>{journalObj.name}</Card.Title>
       <Card.Body className="d-flex" style={{ marginTop: '0px' }}>{journalObj.entry}</Card.Body>
-      <Link href={`/Journal/${journalObj.id}`} passHref>
+      <Link href={`/PartnerJournals/Details/${journalObj.id}`} passHref>
         View Details
       </Link>
       <Card.Footer>{formatEntryDate(journalObj.dateEntered)}</Card.Footer>
@@ -22,7 +22,7 @@ export default function JournalSimple({ journalObj }) {
   );
 }
 
-JournalSimple.propTypes = {
+JournalSimplePartner.propTypes = {
   journalObj: PropTypes.shape({
     id: PropTypes.number,
     userId: PropTypes.number,
