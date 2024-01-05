@@ -23,7 +23,7 @@ export default function PartnerProfilePage() {
 
   const getPartnerUserMood = () => {
     if (user.id != null) {
-      getUserWithMyMoodDTO(user.id)?.then((data) => {
+      getUserWithMyMoodDTO(PartnerId)?.then((data) => {
         setPartnerMyMoodDto(data);
       });
     }
