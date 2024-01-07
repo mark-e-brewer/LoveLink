@@ -29,7 +29,6 @@ export default function HomeLinked() {
     getMostRecentUserJournal(user?.partnerId)
       .then((data) => {
         setPartnerLastJournal(data);
-        console.log(data); // Use 'data' here instead of 'partnersLastJournal'
       })
       .catch((error) => {
         console.error('Error fetching the most recent journal:', error);
