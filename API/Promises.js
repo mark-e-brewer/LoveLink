@@ -318,6 +318,39 @@ const getMostRecentUserJournal = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const setNotifsViewed = (notifsArray) => new Promise((resolve, reject) => {
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  fetch(`${dbUrl}/setNotifsViewed`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({ Notifications: notifsArray }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => resolve(data))
+    .catch((error) => reject(error));
+});
+
+const getUsersUnviewedNotifs = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/unviewedNotifs/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   generatePartnerCode,
   handlePartnerCode,
@@ -341,4 +374,6 @@ export {
   postMyMoodToUser,
   getAllMyMoods,
   getMostRecentUserJournal,
+  setNotifsViewed,
+  getUsersUnviewedNotifs,
 };

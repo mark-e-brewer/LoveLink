@@ -32,7 +32,10 @@ export default function NotificationCard({ notifObj }) {
   return (
     <>
       <Card className="d-flex" style={{ width: '50rem', height: '7rem', borderRadius: '10px' }}>
-        <Card.Title>{notifObj?.title}</Card.Title>
+        <Card.Title>
+          {notifObj.viewed === false && 'NEW! '}
+          {notifObj?.title === 'New Journal Entry' ? `Partner Created ${notifObj?.title}` : notifObj?.title}
+        </Card.Title>
         <Card.Body>{notifObj?.sourceUserName ? notifObj?.sourceUserName : getReceivingUserName()}</Card.Body>
         <Card.Text>{formatAnniversaryDate(notifObj?.dateSet)}</Card.Text>
       </Card>
