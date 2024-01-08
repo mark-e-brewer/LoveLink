@@ -6,11 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inconsolata:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Satisfy&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inconsolata:wght@300;400;500;600;700;800&family=Mate:ital@0;1&family=Quicksand:wght@300;400;500;600;700&family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Satisfy&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
 
+/* 10% color : #44a3fb */
+/* 30% color : rgb(226, 226, 226) */
+/* Soft Black : rgb(27, 27, 27) */
 
 html,
 body {
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: rgb(255, 255, 255);
@@ -33,25 +39,18 @@ body {
   background-color: rgb(255, 213, 226);
 }
 
-
-/* 10% color : #44a3fb */
-/* 30% color : rgb(226, 226, 226) */
-/* Soft Black : rgb(27, 27, 27) */
-
-.nav-text-cont {
-  max-width: 987px;
-}
-
-.home-page-cont {
-  margin: 0 auto; /* Center the container horizontally */
-  max-width: 1000px; /* Limit the maximum width */
-  padding: 20px; /* Add padding if needed */
+.master-div {
+  min-width: 880px;
+  max-width: 880px;
+  width: 100%;
+  padding: 0 20px; 
 }
 
 /* Nav Bar Component */
 #navBarComp {
   background-color: white;
   color: white;
+  margin-bottom: 60px;
 }
 
 /* Nav Bar Brand */
@@ -231,6 +230,187 @@ body {
 .partner-last-journal-text {
   font-family: 'mate';
   font-size: 37px;
+}
+
+/* JOURNAL PAGE CURRENT USER */
+.journal-page-header {
+  font-family: 'satisfy';
+  font-size: 54px;
+}
+
+.new-journal-btn {
+  border-radius: 20px;
+  width: 136px;
+  padding: 6px;
+  font-family: 'Red Hat Mono';
+  background-color: white;
+  color: #44a3fb;
+  border: 2px solid white;
+}
+
+.new-journal-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+.new-journal-btn-div {
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+
+/* JOURNAL SIMPLE DISPLAY BELLOW */
+.journal-view-details {
+  align-items: left;
+  align-self: left;
+  align-content: left;
+}
+
+.journal-view-details {
+  align-self: flex-start;
+  margin-top: auto; /* Push the button to the bottom */
+  margin-left: auto; /* Push the button to the right */
+}
+
+.journal-simple-div {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  background-color: white;
+  border-radius: 20px;
+  height: 275px;
+  margin-bottom: 25px;
+}
+
+.journal-simple-date {
+  font-family: 'Red Hat Mono';
+  margin-top: -4px;
+  margin-bottom: 0px;
+  color: grey;
+}
+
+.journal-simple-title {
+  font-family: 'mate';
+  font-size: 24px;
+}
+
+.journal-simple-entry {
+  font-family: 'red hat mono';
+}
+
+.journal-view-details {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  color: black;
+  padding: 4px;
+  width: 142px;
+}
+
+.journal-view-details:hover {
+  transition: ease 0.2s;
+  background-color: #d7d7d7;
+  border: 2px solid #d7d7d7;
+}
+
+
+/* CURRENT USER JOURNAL DETAILS */
+.details-title {
+  font-family: 'mate';
+  margin-bottom: 30px;
+  color: black;
+}
+
+.details-entry {
+  font-family: 'red hat mono';
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: grey;
+}
+
+.details-feelings {
+  font-family: 'mate';
+  margin-bottom: -10px;
+  color: black;
+}
+
+.details-down-arrow {
+  margin-top: 4px;
+  margin-bottom: -16px;
+}
+
+.mood-tag-display-name {
+  color: black;
+}
+
+.feelings-mood-display-details {
+  margin-bottom: 48px;
+}
+
+.mood-tag-display-div {
+  padding: 0px;
+  margin: 0px;
+}
+
+.details-update-btn {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 142px;
+}
+
+.details-update-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+.details-delete-btn {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 142px;
+}
+
+.details-delete-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+/* NEW JOURNAL FORM */
+.new-journal-form-label {
+  font-family: 'red hat mono';
+}
+.new-journal-form-input {
+  margin-bottom: 30px;
+}
+
+.new-journal-content-submit {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 142px;
+}
+
+.new-journal-content-submit:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
 }
 
 .nav-my-mood-form-btn {
