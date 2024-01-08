@@ -19,7 +19,7 @@ export default function NewJournalPage() {
 
   return (
     <>
-      <h1>Create New Entry</h1>
+      <h1 className="text-center" style={{ fontFamily: 'mate', marginBottom: '30px' }}>Create New Entry</h1>
       <JournalForm userObj={currUser} userID={currUser.id} />
     </>
   );

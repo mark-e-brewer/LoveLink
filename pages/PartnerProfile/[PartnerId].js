@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Image } from 'react-bootstrap';
-import { getUserById, getUserByUid, getUserWithMyMoodDTO } from '../../API/Promises';
+import { getUserById, getUserByUid } from '../../API/Promises';
 import { useAuth } from '../../utils/context/authContext';
 
 export default function PartnerProfilePage() {
@@ -9,7 +9,6 @@ export default function PartnerProfilePage() {
   const { user } = useAuth();
   const [currUser, setCurrUser] = useState({});
   const [partnerUser, setPartnerUser] = useState({});
-  const [partnerMyMoodDto, setPartnerMyMoodDto] = useState({});
   const { PartnerId } = router.query;
 
   const getTheCurrentUserAndPartner = () => {
@@ -21,16 +20,8 @@ export default function PartnerProfilePage() {
     });
   };
 
-  const getPartnerUserMood = () => {
-    if (user.id != null) {
-      getUserWithMyMoodDTO(PartnerId)?.then((data) => {
-        setPartnerMyMoodDto(data);
-      });
-    }
-  };
   useEffect(() => {
     getTheCurrentUserAndPartner();
-    getPartnerUserMood();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -61,9 +52,6 @@ export default function PartnerProfilePage() {
             <h3>Partner Name: {currUser.name}</h3>
             <h3>Anniversary Date: {formatAnniversaryDate(partnerUser.anniversaryDate)}</h3>
           </div>
-        </div>
-        <div>
-          <h1>Partners Mood: {partnerMyMoodDto?.myMood?.moodName}</h1>
         </div>
       </div>
     </>

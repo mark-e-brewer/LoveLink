@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { FloatingLabel, Form } from 'react-bootstrap';
 import { createJournal, updateJournalById } from '../../API/Promises';
 
 const initialState = {
@@ -55,9 +55,9 @@ export default function JournalForm({ journalObj, userID, userObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <FloatingLabel controlId="floatingInput1" label="Journal Title" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Journal Title" className="mb-3 new-journal-form-label">
           <Form.Control
-            className="form-input"
+            className="form-input new-journal-form-input"
             type="text"
             placeholder="Journal Entry Title"
             name="name"
@@ -66,10 +66,10 @@ export default function JournalForm({ journalObj, userID, userObj }) {
             required
           />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingTextarea" label="Journal Content" className="mb-3">
+        <FloatingLabel controlId="floatingTextarea" label="Journal Content" className="mb-3 new-journal-form-label">
           <Form.Control
             as="textarea"
-            className="form-input"
+            className="form-input new-journal-form-input"
             placeholder="Write your journal entry here..."
             name="entry"
             value={formInput.entry}
@@ -77,7 +77,9 @@ export default function JournalForm({ journalObj, userID, userObj }) {
             required
           />
         </FloatingLabel>
-        <Button type="submit">Submit</Button>
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="new-journal-content-submit">Submit</button>
+        </div>
       </Form>
     </>
   );
