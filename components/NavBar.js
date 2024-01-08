@@ -8,6 +8,7 @@ import {
 } from 'react-bootstrap';
 import { getUsersUnviewedNotifs } from '../API/Promises';
 import { useAuth } from '../utils/context/authContext';
+import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   const { user } = useAuth();
@@ -33,27 +34,32 @@ export default function NavBar() {
   }, []);
 
   return (
-    <Navbar className="navBarComp" collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Link passHref href="/">
-          <Navbar.Brand>Love-Link</Navbar.Brand>
+    <Navbar className="navBarComp" id="navBarComp" collapseOnSelect expand="lg">
+      <Container className="nav-text-cont">
+        <Link passHref href="/home">
+          <Navbar.Brand className="nav-bar-brand">LoveLink</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto nav-bar-links">
             <Link passHref href="/home">
-              <Nav.Link>Home</Nav.Link>
-            </Link>
-            <Link passHref href="/profile">
-              <Nav.Link onClick={resetUnviewedNotifsCount}>
-                Profile {unviewedNotifsCount > 0 && `(${unviewedNotifsCount})`}
-              </Nav.Link>
+              <Nav.Link className="nav-link">Home</Nav.Link>
             </Link>
             <Link passHref href="/Journal">
-              <Nav.Link>Journal</Nav.Link>
+              <Nav.Link className="nav-link">Journal</Nav.Link>
+            </Link>
+            <Link passHref href="/profile">
+              <Nav.Link className="nav-link" onClick={resetUnviewedNotifsCount}>
+                Profile <span className="notification-count">{unviewedNotifsCount > 0 && `${unviewedNotifsCount}`}</span>
+              </Nav.Link>
             </Link>
           </Nav>
         </Navbar.Collapse>
+        <Nav className="ms-auto">
+          <button type="button" className="sign-out-nav" onClick={signOut}>
+            Sign Out
+          </button>
+        </Nav>
       </Container>
     </Navbar>
   );

@@ -39,7 +39,7 @@ export default function ProfilePage() {
       });
     });
   };
-  console.log(notifs);
+
   useEffect(() => {
     getTheCurrentUserAndPartner();
     getCurrUserAndNotifs();

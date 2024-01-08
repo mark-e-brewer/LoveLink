@@ -26,7 +26,7 @@ export default function MyMoodform({ userID, myMoodsArray }) {
     if (selectedMood) {
       postMyMoodToUser(parseInt(userID, 10), parseInt(selectedMood.id, 10)).then(() => {
         setFormInput(initialState);
-        router.push('/');
+        router.push('/home');
       });
     }
   };
