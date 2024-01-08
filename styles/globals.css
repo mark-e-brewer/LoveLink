@@ -1,4 +1,11 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Satisfy&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inconsolata:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&family=Satisfy&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inconsolata:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Satisfy&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inconsolata:wght@300;400;500;600;700;800&family=Mate:ital@0;1&family=Quicksand:wght@300;400;500;600;700&family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Satisfy&family=Shadows+Into+Light&family=Syncopate:wght@400;700&display=swap');
+
 
 html,
 body {
@@ -6,7 +13,12 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 6%, rgba(229, 235, 241, 1) 21%, rgba(201, 213, 228, 1) 95%);
+  background-attachment: fixed;
+  background-size: cover;
 }
+
 
 a {
   color: inherit;
@@ -21,6 +33,205 @@ body {
   background-color: rgb(255, 213, 226);
 }
 
+
+/* 10% color : #44a3fb */
+/* 30% color : rgb(226, 226, 226) */
+/* Soft Black : rgb(27, 27, 27) */
+
+.nav-text-cont {
+  max-width: 987px;
+}
+
+.home-page-cont {
+  margin: 0 auto; /* Center the container horizontally */
+  max-width: 1000px; /* Limit the maximum width */
+  padding: 20px; /* Add padding if needed */
+}
+
+/* Nav Bar Component */
+#navBarComp {
+  background-color: white;
+  color: white;
+}
+
+/* Nav Bar Brand */
+.nav-bar-brand {
+  font-family: 'satisfy';
+  font-size: 30px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  color: rgb(54, 54, 54);
+}
+
+.nav-bar-brand:hover {
+  color: rgb(54, 54, 54);
+}
+
+/* Nav bar links */
+.nav-bar-links {
+  font-family: 'Red Hat Mono';
+  font-weight: 400;
+  color: rgb(107, 107, 107);
+}
+
+.nav-link {
+  color: rgb(124, 124, 124);
+}
+
+.nav-link:hover {
+  color: rgb(83, 83, 83);
+}
+
+/* Nav Bar Sign Out button */
+.sign-out-nav {
+  font-family: 'Red Hat Mono';
+  background-color: rgb(226, 226, 226); /* Grey background color */
+  color: rgb(27, 27, 27); /* Black text color */
+  border: none;
+  padding: 8px 16px; /* Adjust padding as needed */
+  border-top-left-radius: 27px; /* Half-circle on the top-left corner */
+  border-bottom-left-radius: 27px; /* Half-circle on the bottom-left corner */
+  border-top-right-radius: 27px; /* Half-circle on the top-right corner */
+  border-bottom-right-radius: 27px; /* Half-circle on the bottom-right corner */
+  cursor: pointer;
+}
+
+/* Hover effect */
+.sign-out-nav:hover {
+  transition: ease-in-out 0.2s;
+  background-color: #d7d7d7; /* Darker grey on hover */
+}
+
+/* Nav Notif Display */
+
+.notification-count {
+  color: #44a3fb;
+  padding-left: 0px;
+  margin-left: -4px;
+}
+
+.notification-count:hover {
+  color: #0084ff;
+}
+
+/* HOME PAGE BELLOW */
+
+.home-welcome {
+  font-family: 'satisfy';
+  font-size: 54px;
+}
+
+.welcome-love-link {
+  color: #44a3fb;
+  margin-left: 14px;
+}
+
+/* My Mood Card */
+
+.my-mood-card {
+  background-color: #fff; /* Set your desired background color */
+  border: 18px solid #ddd; /* Set your desired border style */
+  padding: 32px; /* Adjust padding as needed */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  text-align: center;
+}
+
+/* Partners My Mood Card */
+
+.partners-my-mood-card {
+  background-color: #fff; /* Set your desired background color */
+  border: 1px solid #ddd; /* Set your desired border style */
+  padding: 32px; /* Adjust padding as needed */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  text-align: center;
+  margin-bottom: 20px; /* Add margin as needed */
+}
+
+.emoji-my-mood {
+  font-size: 3.3rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+  margin-top: 10px; /* Add margin to space it from the mood display */
+}
+
+/* MY Moods Container Styles */
+
+.mood-cards-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px; /* Add margin for space between the cards and the container */
+}
+
+
+/* BOTH CARDS MY MOOD */
+
+.mood-cards-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+}
+
+.mood-cards-div .my-mood-card,
+.mood-cards-div .partners-my-mood-card {
+  flex: 1;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mood-cards-div .my-mood-card,
+.mood-cards-div .partners-my-mood-card {
+  box-sizing: border-box;
+  border: 6px solid #ffffff;
+  border-radius: 12px;
+  text-align: center;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 14px;
+}
+
+.mood-cards-div .my-mood-card .nav-my-mood-form-btn,
+.mood-cards-div .partners-my-mood-card .view-partners-journals-btn,
+.mood-cards-div .partners-my-mood-card button:last-child {
+  margin-top: auto; /* Push buttons to the bottom */
+  margin-bottom: -20px;
+}
+
+.moodNameDisplay {
+  font-size: 28px;
+  font-family: 'mate';
+}
+
+.card-title-my-mood {
+  font-size: 34px;
+  font-family: 'mate';
+  margin-top: -26px;
+}
+
+.my-mood-card-btn {
+  border: 3px solid rgb(226, 226, 226);
+  font-family: 'red hat mono';
+  font-size: 15px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(226, 226, 226);
+  color: rgb(0, 0, 0);
+}
+
+.my-mood-card-btn:hover {
+  transition: ease 0.2s;
+  background-color: #d7d7d7;
+  border: 3px solid #d7d7d7;
+}
+
+/* HOME PARTNERS LAST JOURNAL */
+.partner-last-journal-text {
+  font-family: 'mate';
+  font-size: 37px;
+}
 
 .nav-my-mood-form-btn {
   align-self: center;
