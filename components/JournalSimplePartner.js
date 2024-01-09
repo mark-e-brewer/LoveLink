@@ -28,7 +28,7 @@ export default function JournalSimplePartner({ journalObj }) {
           textOverflow: 'ellipsis',
         }}
       >
-        {journalObj.entry.length > 400 ? `${journalObj.entry.slice(0, 400)}...` : journalObj.entry}
+        {journalObj.entry.length > 288 ? `${journalObj.entry.slice(0, 288)}...` : journalObj.entry}
       </p>
       <button className="journal-view-details-partner" type="button" onClick={(() => router.push(`/PartnerJournals/Details/${journalObj.id}`))}>
         View Details

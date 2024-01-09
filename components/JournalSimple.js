@@ -20,7 +20,7 @@ export default function JournalSimple({ journalObj }) {
           marginTop: '0px', textAlign: 'left', overflow: 'hidden', maxHeight: '100px', textOverflow: 'ellipsis',
         }}
       >
-        {journalObj.entry.length > 400 ? `${journalObj.entry.slice(0, 400)}...` : journalObj.entry}
+        {journalObj.entry.length > 288 ? `${journalObj.entry.slice(0, 288)}...` : journalObj.entry}
       </p>
       <button className="journal-view-details" type="button" onClick={() => router.push(`/Journal/${journalObj.id}`)}>
         View Details
