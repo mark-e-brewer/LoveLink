@@ -80,7 +80,10 @@ const getUserWithMyMoodDTO = (userId) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve((data)))
+    .then((data) => {
+      console.warn('Response from server:', data);
+      resolve(data);
+    })
     .catch(reject);
 });
 

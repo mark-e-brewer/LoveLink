@@ -50,7 +50,7 @@ export default function MoodTagAttach({ journalID }) {
               checked={selectedMoodTags.includes(tag.id)}
               onChange={() => handleCheckboxChange(tag.id)}
             />
-            <label htmlFor={`moodTag-${tag.id}`}>{`Mood : ${tag.name}`}</label>
+            <label className="mood-tag-select" htmlFor={`moodTag-${tag.id}`}>{`Mood : ${tag.name}`}</label>
           </div>
         ))}
       </div>

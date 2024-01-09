@@ -39,7 +39,7 @@ export default function MoodTagDisplay({ moodTagObj }) {
       case 'Curious':
         return '🤔';
       default:
-        return '❓'; // Default emoji for unknown moods
+        return '❓';
     }
   };
 

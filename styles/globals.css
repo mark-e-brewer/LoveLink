@@ -878,3 +878,8 @@ body {
   border: solid 2px #d7d7d7;
   background-color: #d7d7d7;
 }
+
+
+.mood-tag-select {
+  font-family: 'mate';
+}

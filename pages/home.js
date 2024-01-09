@@ -19,7 +19,7 @@ export default function HomeLinked() {
     if (user.id != null) {
       getUserWithMyMoodDTO(user.id)?.then((data) => {
         setMyMoodDto(data);
-        getUserWithMyMoodDTO(user.partnerId)?.then((partnerData) => {
+        getUserWithMyMoodDTO(user?.partnerId)?.then((partnerData) => {
           setPartnerMyMoodDto(partnerData);
         });
       });
