@@ -7,9 +7,9 @@ LoveLink is a relationship journaling app, a full-stack React/ASP.NET C# applica
 - Partner account linking through generated codes.
 - Daily mood setting and display for you and linked partner.
 - Journaling system with attachable feeling tags.
-- Ability to view partners journals and details about them such as date and attached feelings.
+- Ability to view partner's journals and details about them such as date and attached feelings.
 - Profile Page with updatable personal info and profile photo uploading.
-- Notification system with with real time updates on partners mood change or new journal entries.
+- Notification system with real time updates on partner's mood changes or new journal entries.
 
 ## Project Screenshots
 Partner Link Page (Generate code for a partner to use to link your accounts)
