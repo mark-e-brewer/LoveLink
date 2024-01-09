@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Image } from 'react-bootstrap';
 import {
   getUserById, getUserByUid, getUsersNotifications, getUsersUnviewedNotifs, setNotifsViewed,
 } from '../API/Promises';
 import { useAuth } from '../utils/context/authContext';
 import NotificationCard from '../components/NotificationCard';
+import ProfileCard from '../components/ProfileCard';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -29,7 +29,8 @@ export default function ProfilePage() {
   const getCurrUserAndNotifs = () => {
     getUserByUid(user?.uid)?.then((data) => {
       getUsersNotifications(data?.id)?.then((notifData) => {
-        setNotifs(notifData);
+        const sortedNotifs = notifData?.sort((a, b) => new Date(b.dateSet) - new Date(a.dateSet));
+        setNotifs(sortedNotifs);
         getUsersUnviewedNotifs(user?.id)?.then((unviewedData) => {
           if (unviewedData?.length > 0 && !markedAsViewed) {
             setMarkedAsViewed(true);
@@ -40,49 +41,38 @@ export default function ProfilePage() {
     });
   };
 
+  const getNotifsOnUpdate = () => {
+    getUsersNotifications(user?.id)?.then((notifData) => {
+      const sortedNotifs = notifData?.sort((a, b) => new Date(b.dateSet) - new Date(a.dateSet));
+      setNotifs(sortedNotifs);
+    });
+  };
+
   useEffect(() => {
     getTheCurrentUserAndPartner();
     getCurrUserAndNotifs();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const formatAnniversaryDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', options);
-  };
-
   return (
     <>
-      <div className="d-flex">
-        <div>
-          <div
-            className="d-flex flex-column justify-content-between"
-            style={{
-              maxWidth: '300px',
-              borderRadius: '30px',
-            }}
-          >
-            <Button onClick={(() => router.push(`/ProfileUpdate/${currUser.id}`))}>Edit Profile</Button>
-            <Image className="profile-photo-img" src={`/LoveLinkProfilePhotos/${currUser.profilePhoto}`} />
-            <Button onClick={(() => router.push(`/ProfileUpdate/Photo/${currUser?.id}`))}>
-              Update Photo
-            </Button>
+      <div className="d-flex flex-column justify-content-center">
+        <div className="d-flex justify-content-center flex-column">
+          <div className="d-flex justify-content-center flex-column align-self-center">
+            <h1 className="text-center profile-header">Your Profile</h1>
+            <div className="d-flex justify-content-center">
+              <button type="button" className="edit-profile-btn" onClick={(() => router.push(`/ProfileUpdate/${currUser.id}`))}>Edit Profile</button>
+            </div>
           </div>
           <div>
-            <h3>Name: {user.name}</h3>
-            <h3>Gender: {currUser.gender}</h3>
-            <h3>Age: {currUser.age}</h3>
-            <h3>Bio: {currUser.bio}</h3>
-            <h3>Partner Name: {partnerUser.name}</h3>
-            <h3>Anniversary Date: {formatAnniversaryDate(currUser.anniversaryDate)}</h3>
+            <ProfileCard userObj={currUser} partnerUserObj={partnerUser} Name={user?.name} />
           </div>
         </div>
         <div>
-          <h1 className="text-center">Notifications</h1>
+          <h1 className="text-center notifications-header">Notifications</h1>
           <div className="notifs-div d-flex justify-content-center flex-column">
             {notifs?.map((notification) => (
-              <NotificationCard key={notification.id} notifObj={notification} />
+              <NotificationCard key={notification.id} notifObj={notification} onUpdate={getNotifsOnUpdate} />
             ))}
           </div>
         </div>

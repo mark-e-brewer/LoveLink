@@ -15,8 +15,8 @@ export default function MoodTagUpdate({ journalId }) {
       .then((response) => {
         console.warn('Full response:', response);
 
-        if (Array.isArray(response) && response.length >= 9 && Array.isArray(response[8])) {
-          const moodTags = response[8].map((tag) => tag.id);
+        if (Array?.isArray(response) && response?.length >= 9 && Array?.isArray(response[8])) {
+          const moodTags = response[8]?.map((tag) => tag?.id);
           setAllMoodTags(moodTags);
           setSelectedMoodTags(moodTags);
         } else {
@@ -42,8 +42,7 @@ export default function MoodTagUpdate({ journalId }) {
 
   const handleSubmit = () => {
     updateMoodTagsInJournalById(journalId, selectedMoodTags)
-      .then((response) => {
-        console.warn(response);
+      .then(() => {
         router.push('/Journal');
       })
       .catch((error) => console.error('Error submitting mood tags:', error));
@@ -51,22 +50,23 @@ export default function MoodTagUpdate({ journalId }) {
 
   return (
     <div>
-      <h1>Change Moods You Felt!</h1>
+      <h1 className="text-center" style={{ fontFamily: 'mate', marginBottom: '30px' }}>Update What You Felt!</h1>
       <div>
-        <h2>Select Mood Tags</h2>
         {allMoodTags.map((tag) => (
-          <div key={tag.id}>
+          <div key={tag?.id} className="d-flex justify-content-center flex-row">
             <input
               type="checkbox"
-              id={`moodTag-${tag.id}`}
-              checked={selectedMoodTags.includes(tag.id)}
-              onChange={() => handleCheckboxChange(tag.id)}
+              id={`moodTag-${tag?.id}`}
+              checked={selectedMoodTags.includes(tag?.id)}
+              onChange={() => handleCheckboxChange(tag?.id)}
             />
             <label htmlFor={`moodTag-${tag?.id}`}>{`Mood : ${tag?.name}`}</label>
           </div>
         ))}
       </div>
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="d-flex justify-content-center">
+        <button className="mood-tag-submit-btn" onClick={handleSubmit}>Submit</button>
+      </div>
     </div>
   );
 }

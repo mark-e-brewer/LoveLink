@@ -34,10 +34,9 @@ export default function MyMoodform({ userID, myMoodsArray }) {
   return (
     <>
       <div>
-        <h1>Let Your Partner Know how Your Feeling</h1>
-        <Form onSubmit={handleSubmit}>
+        <h1 className="text-center" style={{ fontFamily: 'mate', marginBottom: '30px' }}>Let Your Partner Know How Your Feeling</h1>
+        <Form onSubmit={handleSubmit} style={{ fontFamily: 'mate' }}>
           <Form.Group controlId="myMoodSelect">
-            <Form.Label>Select Your Mood</Form.Label>
             <Form.Select
               name="myMood"
               value={formInput.myMood}
@@ -51,8 +50,9 @@ export default function MyMoodform({ userID, myMoodsArray }) {
               ))}
             </Form.Select>
           </Form.Group>
-
-          <Button type="submit">Submit</Button>
+          <div className="d-flex justify-content-center">
+            <Button className="my-mood-submit-btn" type="submit">Submit</Button>
+          </div>
         </Form>
       </div>
     </>

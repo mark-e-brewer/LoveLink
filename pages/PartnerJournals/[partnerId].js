@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getUsersJournalsById } from '../../API/Promises';
-import JournalSimplePartner from '../../components/JournalSimplePartnerHome';
+import JournalSimplePartner from '../../components/JournalSimplePartner';
 
 export default function AllPartnerJournals() {
   const router = useRouter();
@@ -10,7 +10,8 @@ export default function AllPartnerJournals() {
 
   const getThePartnersJournals = () => {
     getUsersJournalsById(partnerId)?.then((journalsData) => {
-      setJournals(journalsData);
+      const sortedJournals = journalsData[4]?.sort((a, b) => new Date(b.dateEntered) - new Date(a.dateEntered));
+      setJournals(sortedJournals);
     });
   };
 
@@ -21,11 +22,13 @@ export default function AllPartnerJournals() {
 
   return (
     <>
-      <div className="d-flex justify-content-center">
-        <h1 className="text-center m-2">Partner Journal Entries</h1>
+      <div className="d-flex justify-content-center partner-journal-page-header">
+        <h1 className="text-center m-2">Partners Journal</h1>
       </div>
       <div className="d-flex flex-column justify-content-center text-center simple-journal-cards-div">
-        {journals[4]?.map((journal) => <JournalSimplePartner journalObj={journal} />)}
+        {journals.map((journal) => (
+          <JournalSimplePartner key={journal.id} journalObj={journal} />
+        ))}
       </div>
     </>
   );

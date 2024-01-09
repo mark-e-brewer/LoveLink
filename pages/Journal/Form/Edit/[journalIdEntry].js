@@ -30,7 +30,7 @@ export default function UpdateJournalPage() {
   }, []);
   return (
     <>
-      <h1>Update This Entry</h1>
+      <h1 className="text-center" style={{ fontFamily: 'mate', marginBottom: '30px' }}>Update This Entry</h1>
       <JournalForm userObj={currUser} userID={currUser.id} journalObj={journal[0]} />
     </>
   );

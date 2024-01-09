@@ -20,7 +20,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: rgb(255, 255, 255);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 6%, rgba(229, 235, 241, 1) 21%, rgba(201, 213, 228, 1) 95%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 6%, rgba(229, 235, 241, 1) 19%, rgba(201, 213, 228, 1) 98%);
   background-attachment: fixed;
   background-size: cover;
 }
@@ -44,6 +44,71 @@ body {
   max-width: 880px;
   width: 100%;
   padding: 0 20px; 
+}
+
+/* SIGN IN PAGE */
+.sign-in-btn {
+  border-radius: 21px;
+  background-color: white;
+  color: #44a3fb;
+  border: 2px solid white;
+  padding: 6px;
+  padding-bottom: 7px;
+  width: 158px;
+  font-size: 18px;
+}
+
+.sign-in-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+/* LINK FORM PAGE */
+.link-page-instructions {
+  font-family: 'mate';
+  font-size: 22px;
+}
+
+.generate-partner-code-btn {
+  border-radius: 21px;
+  background-color: white;
+  color: #44a3fb;
+  border: 2px solid white;
+  padding: 6px;
+  padding-bottom: 7px;
+  width: 158px;
+  font-size: 18px;
+}
+
+.generate-partner-code-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+.link-partner-btn {
+  border-radius: 21px;
+  background-color: white;
+  color: #44a3fb;
+  border: 2px solid white;
+  padding: 6px;
+  padding-bottom: 7px;
+  width: 168px;
+  font-size: 18px;
+}
+
+.link-partner-btn {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+.label-partner-link {
+  font-family: 'red hat mono';
 }
 
 /* Nav Bar Component */
@@ -162,6 +227,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 20px; /* Add margin for space between the cards and the container */
+  margin-bottom: 16px;
 }
 
 
@@ -170,7 +236,6 @@ body {
 .mood-cards-div {
   display: flex;
   justify-content: space-between;
-  margin: 0px;
 }
 
 .mood-cards-div .my-mood-card,
@@ -230,6 +295,8 @@ body {
 .partner-last-journal-text {
   font-family: 'mate';
   font-size: 37px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 /* JOURNAL PAGE CURRENT USER */
@@ -315,6 +382,97 @@ body {
   border: 2px solid #d7d7d7;
 }
 
+/* PARTNER JOURNAL SIMPLE */
+.journal-simple-partner-div {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  background-color: white;
+  border-radius: 20px;
+  height: 275px;
+  margin-bottom: 25px;
+}
+
+.journal-simple-date-partner {
+  font-family: 'Red Hat Mono';
+  margin-top: -4px;
+  margin-bottom: 0px;
+  color: grey;
+}
+
+.journal-simple-title-partner {
+  font-family: 'mate';
+  font-size: 24px;
+}
+
+.journal-simple-partner-entry {
+  font-family: 'red hat mono';
+}
+
+.journal-view-details-partner {
+  align-self: flex-start;
+  margin-top: auto;
+  margin-left: auto;
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  color: black;
+  padding: 4px;
+  width: 142px;
+}
+
+.journal-view-details-partner:hover {
+  transition: ease 0.2s;
+  background-color: #d7d7d7;
+  border: 2px solid #d7d7d7;
+}
+/* JOURNAL SIMPLE PARTNER HOME BELLOW */
+.journal-simple-home-div {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  background-color: white;
+  border-radius: 20px;
+  height: 275px;
+  margin-bottom: 25px;
+}
+
+.journal-simple-home-date {
+  font-family: 'Red Hat Mono';
+  margin-top: -4px;
+  margin-bottom: 0px;
+  color: grey;
+}
+
+.journal-simple-home-title {
+  font-family: 'mate';
+  font-size: 24px;
+}
+
+.journal-simple-home-entry {
+  font-family: 'red hat mono';
+}
+
+.journal-view-details-home {
+  align-self: flex-start;
+  margin-top: auto; /* Push the button to the bottom */
+  margin-left: auto; /* Push the button to the right */
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  color: black;
+  padding: 4px;
+  width: 142px;
+}
+
+.journal-view-details-home:hover {
+  transition: ease 0.2s;
+  background-color: #d7d7d7;
+  border: 2px solid #d7d7d7;
+}
+
 
 /* CURRENT USER JOURNAL DETAILS */
 .details-title {
@@ -388,9 +546,76 @@ body {
   color: #148dff;
 }
 
+/* PARTNER DETAILS PAGE IN JOURNAL */
+.partner-details-title {
+  font-family: 'mate';
+  margin-bottom: 30px;
+  color: black;
+}
+
+.partner-details-entry {
+  font-family: 'red hat mono';
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: grey;
+}
+
+.partner-details-hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 2px solid #d7d7d7;
+}
+
+.partner-details-feelings {
+  font-family: 'mate';
+  margin-bottom: -10px;
+  color: black;
+}
+
+.partner-feelings-mood-display {
+  margin-bottom: 48px;
+}
+
+.mood-tag-display-name {
+  color: black;
+}
+/* PARTNER JOURNAL DETAILS HOME ROUTE */
+.partner-details-home-title {
+  font-family: 'mate';
+  margin-bottom: 30px;
+  color: black;
+}
+
+.partner-details-home-entry {
+  font-family: 'red hat mono';
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: grey;
+}
+
+.partner-details-home-hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 2px solid #d7d7d7;
+}
+
+.partner-details-home-feelings {
+  font-family: 'mate';
+  margin-bottom: -10px;
+  color: black;
+}
+
+.partner-details-home-mood-display {
+  margin-bottom: 48px;
+}
+
+.mood-tag-display-name {
+  color: black;
+}
+
 /* NEW JOURNAL FORM */
 .new-journal-form-label {
-  font-family: 'red hat mono';
+  font-family: 'mate';
 }
 .new-journal-form-input {
   margin-bottom: 30px;
@@ -417,6 +642,239 @@ body {
   align-self: center;
 }
 
+/* MOOD TAG ATTACH NEW */
+.mood-tag-submit-btn {
+  margin-top: 30px;
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 122px;
+}
+
+.mood-tag-submit-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+/* MY MOOD FORM */
+.my-mood-submit-btn {
+  margin-top: 30px;
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 122px;
+}
+
+.my-mood-submit-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+/* PARTNER JOURNAL PAGE */
+.partner-journal-page-header {
+  font-family: 'satisfy';
+  font-size: 54px;
+  margin-bottom: 30px;
+}
+
+/* CURR USER PROFILE PAGE */
+.profile-header {
+  font-family: 'satisfy';
+  font-size: 52px;
+  margin-bottom: 26px;
+}
+
+.edit-profile-btn {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 144px;
+  margin-bottom: 28px;
+}
+
+.edit-profile-btn:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.pc-photo-div {
+  margin-right: 20px;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 250px; /* Adjust the size of the circular container as needed */
+  height: 250px; /* Adjust the size of the circular container as needed */
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profile-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-img-partner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-container-partner {
+  position: relative;
+  width: 280px; /* Adjust the size of the circular container as needed */
+  height: 280px; /* Adjust the size of the circular container as needed */
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.update-photo-route-btn {
+  margin-top: 10px;
+  padding: 5px;
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(226, 226, 226);
+  background-color: rgb(226, 226, 226);
+  color: black;
+  padding: 4px;
+  width: 142px;
+}
+
+.update-photo-route-btn:hover {
+  transition: ease 0.2s;
+  background-color: #d7d7d7;
+  border: 2px solid #d7d7d7;
+}
+
+.pfp-data-div {
+  width: 400px;
+  margin-left: 70px;
+}
+
+.pfp-data-line {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: grey;
+}
+
+.profile-info-label {
+  color: grey;
+  font-size: 15px;
+  font-family: 'mate';
+}
+
+.profile-info-data {
+  font-size: 15px;
+  font-family: 'mate';
+}
+
+.pfp-info-form {
+  font-family: 'mate';
+  margin-bottom: 30px;
+}
+
+.pfp-info-form-submit {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 98px;
+}
+
+.pfp-info-form-submit:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+
+/* PROFILE PHOTO UPLOAD FORM */
+
+.pfp-update {
+  font-family: 'mate';
+}
+
+.pfp-update-form-submit {
+  font-family: 'red hat mono';
+  border-radius: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  color: #44a3fb;
+  padding: 4px;
+  width: 148px;
+}
+
+.pfp-update-form-submit:hover {
+  transition: ease-in-out 0.2s;
+  border: 2px solid rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
+  color: #148dff;
+}
+
+/* NOTIFICATIONS ARE BELLOW */
+.notifications-header {
+  font-family: 'satisfy';
+  margin-top: 24px;
+  margin-bottom: 22px;
+  font-size: 48px;
+}
+
+.notif-card {
+  background-color: white;
+  border-radius: 20px;
+  min-width: 600px;
+  min-height: 150px;
+  margin-bottom: 24px;
+  padding: 10px;
+}
 .notifs-div {
   align-items: center;
+}
+
+.notif-card-header {
+  font-family: 'mate';
+  font-size: 24px;
+}
+
+.notif-content {
+  font-family: 'mate';
+  font-size: 20px;
+}
+
+.new-notif {
+  color: #44a3fb;
+}
+
+#delete-notif:hover {
+  transition: ease 0.2s;
+  border: solid 2px #d7d7d7;
+  background-color: #d7d7d7;
 }

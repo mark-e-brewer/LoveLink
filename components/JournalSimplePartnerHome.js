@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function JournalSimplePartner({ journalObj }) {
+export default function JournalSimplePartnerHome({ journalObj }) {
+  const router = useRouter();
   const formatEntryDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date(dateString);
@@ -11,18 +11,32 @@ export default function JournalSimplePartner({ journalObj }) {
   };
 
   return (
-    <Card className="mb-3">
-      <Card.Title style={{ color: 'black', marginBottom: '0px' }}>{journalObj.name}</Card.Title>
-      <Card.Body className="d-flex" style={{ marginTop: '0px' }}>{journalObj.entry}</Card.Body>
-      <Link href={`/HomePartnerJournalView/${journalObj.id}`} passHref>
+    <div className="journal-simple-home-div">
+      <p style={{ textAlign: 'left' }} className="journal-simple-home-date">
+        {formatEntryDate(journalObj.dateEntered)}
+      </p>
+      <p style={{ color: 'black', marginBottom: '0px', textAlign: 'left' }} className="journal-simple-home-title">
+        {journalObj.name}
+      </p>
+      <p
+        className="journal-simple-home-entry"
+        style={{
+          marginTop: '0px',
+          textAlign: 'left',
+          overflow: 'hidden',
+          maxHeight: '100px',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {journalObj.entry?.length > 400 ? `${journalObj.entry.slice(0, 400)}...` : journalObj.entry}
+      </p>
+      <button className="journal-view-details-home" type="button" onClick={() => router.push(`/HomePartnerJournalView/${journalObj.id}`)}>
         View Details
-      </Link>
-      <Card.Footer>{formatEntryDate(journalObj.dateEntered)}</Card.Footer>
-    </Card>
+      </button>
+    </div>
   );
 }
-
-JournalSimplePartner.propTypes = {
+JournalSimplePartnerHome.propTypes = {
   journalObj: PropTypes.shape({
     id: PropTypes.number,
     userId: PropTypes.number,

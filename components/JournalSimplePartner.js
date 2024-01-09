@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function JournalSimplePartner({ journalObj }) {
+  const router = useRouter();
   const formatEntryDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date(dateString);
@@ -11,14 +11,29 @@ export default function JournalSimplePartner({ journalObj }) {
   };
 
   return (
-    <Card className="mb-3">
-      <Card.Title style={{ color: 'black', marginBottom: '0px' }}>{journalObj.name}</Card.Title>
-      <Card.Body className="d-flex" style={{ marginTop: '0px' }}>{journalObj.entry}</Card.Body>
-      <Link href={`/PartnerJournals/Details/${journalObj.id}`} passHref>
+    <div className="journal-simple-partner-div">
+      <p style={{ textAlign: 'left' }} className="journal-simple-date-partner">
+        {formatEntryDate(journalObj.dateEntered)}
+      </p>
+      <p style={{ color: 'black', marginBottom: '0px', textAlign: 'left' }} className="journal-simple-title-partner">
+        {journalObj.name}
+      </p>
+      <p
+        className="d-flex journal-simple-partner-entry"
+        style={{
+          marginTop: '0px',
+          textAlign: 'left',
+          overflow: 'hidden',
+          maxHeight: '100px',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {journalObj.entry.length > 400 ? `${journalObj.entry.slice(0, 400)}...` : journalObj.entry}
+      </p>
+      <button className="journal-view-details-partner" type="button" onClick={(() => router.push(`/PartnerJournals/Details/${journalObj.id}`))}>
         View Details
-      </Link>
-      <Card.Footer>{formatEntryDate(journalObj.dateEntered)}</Card.Footer>
-    </Card>
+      </button>
+    </div>
   );
 }
 
