@@ -149,21 +149,21 @@ body {
 /* Nav Bar Sign Out button */
 .sign-out-nav {
   font-family: 'Red Hat Mono';
-  background-color: rgb(226, 226, 226); /* Grey background color */
-  color: rgb(27, 27, 27); /* Black text color */
+  background-color: rgb(226, 226, 226);
+  color: rgb(27, 27, 27);
   border: none;
-  padding: 8px 16px; /* Adjust padding as needed */
-  border-top-left-radius: 27px; /* Half-circle on the top-left corner */
-  border-bottom-left-radius: 27px; /* Half-circle on the bottom-left corner */
-  border-top-right-radius: 27px; /* Half-circle on the top-right corner */
-  border-bottom-right-radius: 27px; /* Half-circle on the bottom-right corner */
+  padding: 8px 16px;
+  border-top-left-radius: 27px;
+  border-bottom-left-radius: 27px;
+  border-top-right-radius: 27px;
+  border-bottom-right-radius: 27px;
   cursor: pointer;
 }
 
 /* Hover effect */
 .sign-out-nav:hover {
   transition: ease-in-out 0.2s;
-  background-color: #d7d7d7; /* Darker grey on hover */
+  background-color: #d7d7d7;
 }
 
 /* Nav Notif Display */
@@ -193,22 +193,22 @@ body {
 /* My Mood Card */
 
 .my-mood-card {
-  background-color: #fff; /* Set your desired background color */
-  border: 18px solid #ddd; /* Set your desired border style */
-  padding: 32px; /* Adjust padding as needed */
-  border-radius: 10px; /* Add border-radius for rounded corners */
+  background-color: #fff;
+  border: 18px solid #ddd;
+  padding: 32px;
+  border-radius: 10px;
   text-align: center;
 }
 
 /* Partners My Mood Card */
 
 .partners-my-mood-card {
-  background-color: #fff; /* Set your desired background color */
-  border: 1px solid #ddd; /* Set your desired border style */
-  padding: 32px; /* Adjust padding as needed */
-  border-radius: 10px; /* Add border-radius for rounded corners */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 32px;
+  border-radius: 10px;
   text-align: center;
-  margin-bottom: 20px; /* Add margin as needed */
+  margin-bottom: 20px;
 }
 
 .emoji-my-mood {
@@ -217,8 +217,8 @@ body {
 
 .button-container {
   display: flex;
-  justify-content: space-around; /* Adjust as needed */
-  margin-top: 10px; /* Add margin to space it from the mood display */
+  justify-content: space-around;
+  margin-top: 10px;
 }
 
 /* MY Moods Container Styles */
@@ -226,7 +226,7 @@ body {
 .mood-cards-div {
   display: flex;
   justify-content: space-between;
-  margin: 20px; /* Add margin for space between the cards and the container */
+  margin: 20px;
   margin-bottom: 16px;
 }
 
@@ -259,7 +259,7 @@ body {
 .mood-cards-div .my-mood-card .nav-my-mood-form-btn,
 .mood-cards-div .partners-my-mood-card .view-partners-journals-btn,
 .mood-cards-div .partners-my-mood-card button:last-child {
-  margin-top: auto; /* Push buttons to the bottom */
+  margin-top: auto;
   margin-bottom: -20px;
 }
 
@@ -336,8 +336,8 @@ body {
 
 .journal-view-details {
   align-self: flex-start;
-  margin-top: auto; /* Push the button to the bottom */
-  margin-left: auto; /* Push the button to the right */
+  margin-top: auto;
+  margin-left: auto;
 }
 
 .journal-simple-div {
@@ -456,8 +456,8 @@ body {
 
 .journal-view-details-home {
   align-self: flex-start;
-  margin-top: auto; /* Push the button to the bottom */
-  margin-left: auto; /* Push the button to the right */
+  margin-top: auto;
+  margin-left: auto;
   font-family: 'red hat mono';
   border-radius: 20px;
   border: 2px solid rgb(226, 226, 226);
@@ -727,8 +727,8 @@ body {
 
 .profile-photo-container {
   position: relative;
-  width: 250px; /* Adjust the size of the circular container as needed */
-  height: 250px; /* Adjust the size of the circular container as needed */
+  width: 250px;
+  height: 250px;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -747,8 +747,8 @@ body {
 
 .profile-photo-container-partner {
   position: relative;
-  width: 280px; /* Adjust the size of the circular container as needed */
-  height: 280px; /* Adjust the size of the circular container as needed */
+  width: 280px;
+  height: 280px;
   overflow: hidden;
   border-radius: 50%;
 }
