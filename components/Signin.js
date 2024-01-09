@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
 
 function Signin() {
@@ -17,11 +16,13 @@ function Signin() {
         paddingBlock: '0 5rem',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
-      </Button>
+      <h1 style={{ fontFamily: 'satisfy', fontSize: '54px' }}>Hi there!</h1>
+      <p style={{ fontFamily: 'mate', fontSize: '24px', color: 'grey' }}>Click the button below to login!</p>
+      <div className="d-flex justify-content-center">
+        <button type="button" size="lg" className="copy-btn sign-in-btn" onClick={signIn}>
+          Sign In
+        </button>
+      </div>
     </div>
   );
 }

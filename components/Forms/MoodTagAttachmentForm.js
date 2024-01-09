@@ -40,11 +40,10 @@ export default function MoodTagAttach({ journalID }) {
 
   return (
     <div>
-      <h1>Attach Moods You Felt!</h1>
+      <h1 className="text-center" style={{ fontFamily: 'mate', marginBottom: '30px' }}>What Were You feeling?</h1>
       <div>
-        <h2>Select Mood Tags</h2>
         {allMoodTags.map((tag) => (
-          <div key={tag.id}>
+          <div key={tag.id} className="d-flex justify-content-center flex-row">
             <input
               type="checkbox"
               id={`moodTag-${tag.id}`}
@@ -55,7 +54,9 @@ export default function MoodTagAttach({ journalID }) {
           </div>
         ))}
       </div>
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="d-flex justify-content-center">
+        <button className="mood-tag-submit-btn" onClick={handleSubmit}>Submit</button>
+      </div>
     </div>
   );
 }

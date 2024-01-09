@@ -51,9 +51,10 @@ export default function UserProfileForm({ userObj, userID }) {
     <>
       <div>
         <Form onSubmit={handleSubmit}>
-          <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
+          <h1 className="text-center" style={{ fontFamily: 'mate', marginBottom: '30px' }}>Update Profile Info</h1>
+          <FloatingLabel controlId="floatingInput1" label="Name" className="pfp-info-form">
             <Form.Control
-              className="form-input"
+              className="form-input pfp-info-form"
               type="text"
               placeholder="Enter Your Name"
               name="name"
@@ -61,9 +62,9 @@ export default function UserProfileForm({ userObj, userID }) {
               onChange={handleChange}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput1" label="Age" className="mb-3">
+          <FloatingLabel controlId="floatingInput1" label="Age" className="pfp-info-form">
             <Form.Control
-              className="form-input"
+              className="form-input pfp-info-form"
               type="text"
               placeholder="Enter Your Age"
               name="age"
@@ -71,19 +72,20 @@ export default function UserProfileForm({ userObj, userID }) {
               onChange={handleChange}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput1" label="Bio" className="mb-3">
+          <FloatingLabel controlId="floatingInput1" label="Bio" className="pfp-info-form">
             <Form.Control
-              className="form-input"
+              className="form-input pfp-info-form"
               type="text"
-              placeholder="Enter a Bio"
+              placeholder="Enter a Bio (165 Character Max)"
               name="bio"
               value={formInput.bio}
               onChange={handleChange}
+              maxLength={165}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput1" label="Gender" className="mb-3">
+          <FloatingLabel controlId="floatingInput1" label="Gender" className="pfp-info-form">
             <Form.Control
-              className="form-input"
+              className="form-input pfp-info-form"
               type="text"
               placeholder="Enter Gender/Pronouns"
               name="gender"
@@ -91,9 +93,9 @@ export default function UserProfileForm({ userObj, userID }) {
               onChange={handleChange}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingInput1" label="Anniversary Date" className="mb-3">
+          <FloatingLabel controlId="floatingInput1" label="Anniversary Date" className="pfp-info-form">
             <Form.Control
-              className="form-input"
+              className="form-input pfp-info-form"
               type="date"
               name="anniversaryDate"
               value={formInput.anniversaryDate}
@@ -101,7 +103,9 @@ export default function UserProfileForm({ userObj, userID }) {
               required
             />
           </FloatingLabel>
-          <Button type="submit" className="form-submit">Submit</Button>
+          <div className="d-flex justify-content-center">
+            <Button type="submit" className="form-submit pfp-info-form-submit">Submit</Button>
+          </div>
         </Form>
       </div>
     </>
